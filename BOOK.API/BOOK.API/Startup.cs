@@ -62,6 +62,8 @@ namespace BOOK.API
             {
                 endpoints.MapControllers();
             });
+
+            AppDbInitializer.Seed(app);
         }
     }
 }
