@@ -22,10 +22,22 @@ namespace BOOK.API.Data.Services
                 Title = book.Title,
                 Author = book.Author,
                 Description = book.Description,
-                CreatedDate=DateTime.Now
+                CreatedDate = DateTime.Now
             };
             _context.Books.Add(_book);
             _context.SaveChanges();
+        }
+
+        public List<Book> GetAllBooks()
+        {
+            var allBooks = _context.Books.ToList();
+            return allBooks;
+        }
+
+        public Book GetBookById(int bookId)
+        {
+            var book = _context.Books.FirstOrDefault(n => n.Id == bookId);
+            return book;
         }
     }
 }

@@ -19,6 +19,20 @@ namespace BOOK.API.Controllers
             _bookService = booksService;
         }
 
+        [HttpGet("read")]
+        public IActionResult GetAllBooks()
+        {
+            var allBooks =_bookService.GetAllBooks();
+            return Ok(allBooks);
+        }
+
+        [HttpGet("read/{id}")]
+        public IActionResult GetBookById(int id)
+        {
+            var book = _bookService.GetBookById(id);
+            return Ok(book);
+        }
+
         [HttpPost("create")]
         public IActionResult AddBook(BookVM book)
         {
