@@ -34,10 +34,30 @@ namespace BOOK.API.Data.Services
             return allBooks;
         }
 
+        //Clean code - GetAllBooks()
+        //public List<Book> GetAllBooks() => _context.Books.ToList();
+
         public Book GetBookById(int bookId)
         {
             var book = _context.Books.FirstOrDefault(n => n.Id == bookId);
             return book;
+        }
+
+        //Clean code - GetBookById
+        //public Book GetBookById(int bookId) => _context.Books.FirstOrDefault(n => n.Id == bookId);
+
+        public Book UpdateBookById(int bookId, BookVM book)
+        {
+            var _book = _context.Books.FirstOrDefault(n => n.Id == bookId);
+            if (_book != null)
+            {
+                _book.Title = book.Title;
+                _book.Author = book.Author;
+                _book.Description = book.Description;
+
+                _context.SaveChanges();
+            }
+            return _book;
         }
     }
 }

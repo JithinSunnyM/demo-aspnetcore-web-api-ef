@@ -39,5 +39,12 @@ namespace BOOK.API.Controllers
             _bookService.AddBook(book);
             return Ok();
         }
+
+        [HttpPut("update/{id}")]
+        public IActionResult UpdateBookById(int id,[FromBody]BookVM book)
+        {
+            var updatedBook = _bookService.UpdateBookById(id, book);
+            return Ok(updatedBook);
+        }
     }
 }
